@@ -1,0 +1,62 @@
+#general_info{
+    margin-top: 50px;
+    padding-left: 600px;
+    border: 2px solid cornsilk;
+    background-color: rgb(0, 0, 0, 0.6);
+    border-radius: 10px;
+    color: cornsilk;
+}
+
+#table_class{
+    border: 5px solid whitesmoke;
+    padding-bottom: 5px;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    background-color: rgb(0, 0, 0, 0.6);
+    color: cornsilk;
+}
+.selected{
+    background-color: rgb(158, 158, 158);color: #fff;font-weight: bold; pointer-events: none;
+}
+
+
+span{
+    font-weight: bold;
+}
+
+
+table{
+    margin-left: 500px; 
+    margin-top: 25px;  
+    min-width: 380px;
+    min-height: 250px;
+    
+}
+caption{
+    padding-bottom: 10px;  
+}
+th{
+    padding-right: 20px;
+}
+
+td{
+    border: 1px solid whitesmoke;
+    min-width: 50px;
+}
+td:hover {
+    background-color:rgb(230, 189, 238) !important;
+}
+
+#book_st{
+padding-bottom: 5px;
+}
+
+#confirm_button{
+    margin-top: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+    
+    background-color: rgb(0, 0, 0, 0.6);
+    color: cornsilk;
+}
+

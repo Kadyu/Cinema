@@ -1,0 +1,23 @@
+.confirmed_ticket_info{
+    border: 10px solid rgb(0, 0, 0, 0.4);
+    padding: 25px;
+    margin-top: 150px;  
+    background-color: rgb(0, 0, 0, 0.6);
+    border-radius: 10px;
+    color: cornsilk;
+
+}
+
+
+@media print {
+   #first_ticket{
+       page-break-after: right;
+   }
+    header, footer, .nav_fixed{
+     display: none !important;
+   }
+}
+
+
+
+

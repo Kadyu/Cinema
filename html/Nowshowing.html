@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Now Showing">
+    <meta name="author" content="Turdakunov Kadyrbek">
+    <meta name="keywords" content="now showing, cinema choosing">
+    <link rel="stylesheet" type="text/css" href="../style/nowshowing.css">
+    <link rel="stylesheet" type="text/css" href="../style/commonstyle.css">
+    <script src="../js/movies.js"></script>
+	<script src=" http://courses.cs.cityu.edu.hk/cs2204/cw3/cinemas.js "></script>
+    
+    <title> Now Showing </title>
+    </head>
+    <body>
+
+    <header>
+        <p>Now Showing Page</p>
+        <!-- Header of the Web page -->
+        <h1>City <span id="roll_img"><img src="../images/filmreel.png" alt="Your browser not supports this image"> </span> Cinema </h1>
+    </header>
+
+
+    <div class="nav_fixed">
+        <a href="Mainpage.html" target="_blank" ><b>Home</b></a>
+        <span class="link"><a href="Nowshowing.html" ><b>Now Showing</b></a></span>
+        <a href="Ticket.html" target="_blank" ><b>Ticket</b></a>
+        </div>
+
+    <p><br></p>
+
+<div  id="cinema_choosing">
+    <h3>Select cinema</h3>
+    <select class="select-css" id="mySelect" onchange="myFunction()"> </select>
+    <div class="eachmovie" id="mov"></div>
+</div>
+
+<div class="block_now_show" id="_block_">
+</div>
+
+
+
+<div id="cinema_Map">
+    <!-- Element h -->
+    <h2>Cinema Address and Map</h2>
+    <div class="block_map">
+    <ul>
+        <li> <img width="208" src="../images/AMCPacific.JPG" alt="Your browser not supports this image">  
+            <ul>
+                <li> One Pacific Place, 88 Queensway, Admiralty </li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    
+
+    <div class="block_map">
+    <ul>
+        <li> <img width="195" src="../images/PalaceIFC.JPG" alt="Your browser not supports this image" >
+            <ul> 
+                <li> Shop 1058B, 1st Floor, IFC Mall, 8 Finance St, Central </li>
+            </ul> 
+        </li>
+    </ul>
+    </div>
+    
+    
+    <div class="block_map">
+    <ul>
+        <li> <img width="196" src="../images/UACineTimes.JPG" alt="Your browser not supports this image">  
+            <ul>
+                <li> House 3 & House 5 Times Square, 1 Matheson St, Causeway Bay </li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+</div>
+
+<footer>
+    <p>&copy;Copyright of resources belong to the corresponding copyright owners - fair use for education purpose 
+    | <a href="Mainpage.html" target="_blank" ><b>Home</b></a>   
+    |  </p>
+</footer>
+
+<script src="../js/nowshowing.js"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Print Page">
+    <meta name="author" content="Turdakunov Kadyrbek">
+    <meta name="keywords" content="print, page print">
+    <title> Print Page </title>
+    <link rel="stylesheet" type="text/css" href="../style/printpage.css">
+    <link rel="stylesheet" type="text/css" href="../style/commonstyle.css">
+    <script src=" http://courses.cs.cityu.edu.hk/cs2204/cw3/cinemas.js "></script>
+	<script src="../js/movies.js"></script>
+</head>
+
+<body>
+    <header>
+        <p>Print Page</p>
+
+        <h1>City <span id="roll_img"><img src="../images/filmreel.png" alt="Your browser not supports this image"> </span> Cinema </h1>
+        <!-- Header of the Web Page -->
+        
+    </header>
+
+<div class="nav_fixed">
+        <a href="Mainpage.html" target="_blank" ><b>Home</b></a>
+        <a href="Nowshowing.html" ><b>Now Showing</b></a>
+        <a href="Ticket.html" target="_blank" ><b>Ticket</b></a>
+</div>
+  
+    <div id="mov"></div>
+
+
+<footer>
+    <p>&copy;Copyright of resources belong to the corresponding copyright owners - fair use for education purpose
+        | <a href="Mainpage.html" target="_blank" ><b>Home</b></a>  
+        | <a href="Design.html" target="_blank" ><b>Design</b></a> </p>
+</footer>
+
+
+
+
+
+<script>
+    let qe = localStorage.getItem("innd");
+    function getMovieName(movieArray, id) {
+        for (let i = 0; i < movieArray.length; i++) {
+            if (movieArray[i].id == id) return movieArray[i].name;
+        }
+        return undefined;
+    }
+    function getMoviePic(movieArray, id) {
+        for (let i = 0; i < movieArray.length; i++) {
+            if (movieArray[i].id == id) return movieArray[i].thumbnail
+        }
+        return undefined;
+    }
+    let movies = getMovies();
+    let cinemas = getCinemas();
+    let branchNames = new Array();
+    let branchMovie = new Array();
+    let movieIds = new Array();
+    let movieNames = new Array();
+    let movieIndex = new Array();
+    let movieDate = new Array();
+    let movieHouse = new Array();
+    let moviePictures = new Array();
+    let movieShows = new Array();
+    let ind = localStorage.getItem("ind")
+    let cinId = localStorage.getItem("nme")
+    let movId = localStorage.getItem("ne")
+    for (let i = 0; i < cinemas.length; i++) {
+        branchNames[i] = cinemas[i].branchName
+    }
+    for (let i = 0; i < cinemas.length; i++) {
+        if (cinId === branchNames[i]) {
+            branchMovie = cinemas[i].movies
+            for (let j = 0; j < branchMovie.length; j++) {
+                movieIds[j] = (cinemas[i].movies[j].id);
+                movieNames[j] = (getMovieName(movies, cinemas[i].movies[j].id));
+                moviePictures[j] = (getMoviePic(movies, cinemas[i].movies[j].id));
+                for (let k = 0; k < cinemas[i].movies[j].shows.length; k++) {
+                    movieIndex[k] = (cinemas[i].movies[j].shows[k].index);
+                    movieDate[k] = (cinemas[i].movies[j].shows[k].datetime);
+                    movieHouse[k] = (cinemas[i].movies[j].shows[k].house);
+                }
+            }
+        }
+    }
+    console.log(branchNames[cinId])
+    console.log(getMovieName(movies, cinemas[cinId].movies[movId].id))
+    let dat = ""
+    let hoe = 0
+    for (let k = 0; k < cinemas[cinId].movies.length; k++) {
+        for (let f = 0; f < cinemas[cinId].movies[k].shows.length; f++) {
+            if (cinemas[cinId].movies[k].shows[f].index == ind) {
+                
+                dat = cinemas[cinId].movies[k].shows[f].datetime
+                hoe = cinemas[cinId].movies[k].shows[f].house
+            }
+        }
+    }
+    for (let i = 0; i < qe.length; i++) {
+        if ((i + 1) % 3 != 0) {
+            console.log(qe[i])
+
+            let t = document
+            let bloc = t.getElementById('mov')
+            let elemnt = t.createElement('div')
+            elemnt.innerHTML = `
+<ul class="confirmed_ticket_info" class="ticket" >
+        <li>Cinema: ${branchNames[cinId]}</li>
+        <li>Movie Name: ${getMovieName(movies, cinemas[cinId].movies[movId].id)}</li>
+        <li>Date: ${dat}</li>
+        <li>House: ${hoe}</li>
+        <li>Seat: ${qe[i]}${qe[i + 1]}</li>
+    </ul>
+         `
+            bloc.appendChild(elemnt)
+            i++
+        }
+    }
+</script>
+
+
+</body>
+</html>

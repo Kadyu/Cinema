@@ -1,0 +1,45 @@
+#cinema_choosing{
+    border: solid 1px cornsilk;
+    text-align: center;
+    padding: 15px;
+    background-color: rgb(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    color: cornsilk;
+}
+
+.img_n{
+    float: left;
+    padding-right: 10px;
+}
+
+.block_now_show{
+      
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-left: 600px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    background-color: rgb(0, 0, 0, 0.6);
+    color: cornsilk;
+    border-right: 3px solid cornsilk;
+}
+
+.block_map{
+    float:left;
+    width: 33.33%;
+    border: 3px solid rgb(255, 236, 220);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+    background-color:rgb(0, 0, 0, 0.6);
+    color: cornsilk;   
+}
+
+input{
+    margin-bottom: 30px;
+}

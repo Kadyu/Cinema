@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="City Cinema Ticket">
+    <meta name="author" content="Turdakunov Kadyrbek">
+    <meta name="keywords" content="ticket, table">
+    <link rel="stylesheet" type="text/css" href="../style/ticketpage.css">
+    <link rel="stylesheet" type="text/css" href="../style/commonstyle.css">
+    <script src=" http://courses.cs.cityu.edu.hk/cs2204/cw3/cinemas.js "></script>
+	<script src="../js/movies.js"></script>
+    <title> Ticket Page </title> 
+</head>
+
+<body>
+    
+    <header>
+        <p>Ticket Page</p>
+        <h1>City <span id="roll_img"><img src="../images/filmreel.png" alt="Your browser not supports this image"> </span> Cinema </h1>
+        
+    </header>
+
+    <div class="nav_fixed">
+        <a href="Mainpage.html" target="_blank" ><b>Home</b></a>
+        <a href="Nowshowing.html" ><b>Now Showing</b></a>
+        <span class="link"><a href="Ticket.html" target="_blank" ><b>Ticket</b></a></span>
+        </div>
+
+    <p><br></p>
+
+
+    <div id="general_info">
+        <div id=mov></div>
+    </div>
+
+    
+    <div id="table_class">
+    <table id="table" class="seats_table" >
+
+    <caption>SCREEN</caption>
+             
+    <tbody>
+        <tr>
+            <th>Row A</th>
+            <td id="st_1">1</td>
+            <td id="st_2">2</td>
+            <td id="st_3">3</td>
+            <td id="st_4">4</td>
+        </tr>
+        <tr>
+            <th>Row B</th>
+            <td id="st_5">1</td>
+            <td id="st_6">2</td>
+            <td id="st_7">3</td>
+            <td id="st_8">4</td>
+        </tr>
+        <tr>
+            <th>Row C</th>
+            <td id="st_9">1</td>
+            <td id="st_10">2</td>
+            <td id="st_11">3</td>
+            <td id="st_12">4</td>
+        </tr>
+    </tbody>
+        
+    </table>
+    </div>
+
+
+    <p><br></p>
+    <div id="confirm_button">
+    <form action="Print.html" method="GET"> 
+        <p>Seat Booked:</p>
+        <p id="book_st">  </p>
+        <input type="submit" value="Confirm">
+    </form>
+    </div>
+    <p><br></p>
+    
+    <footer>
+       <p>&copy;Copyright of resources belong to the corresponding copyright owners - fair use for education purpose 
+            | <a href="Mainpage.html" target="_blank" ><b>Home</b></a>  
+            | <a href="Design.html" target="_blank" ><b>Design</b></a>  </p>
+    </footer>
+
+    <script>
+        function getMovieName(movieArray, id) {
+            for (let i = 0; i < movieArray.length; i++) {
+                if (movieArray[i].id == id) return movieArray[i].name;
+            }
+            return undefined;
+        }
+        function getMoviePic(movieArray, id) {
+            for (let i = 0; i < movieArray.length; i++) {
+                if (movieArray[i].id == id) return movieArray[i].thumbnail
+            }
+            return undefined;
+        }
+        let movies = getMovies();
+        let cinemas = getCinemas();
+        let branchNames = new Array();
+        let branchMovie = new Array();
+        let movieIds = new Array();
+        let movieNames = new Array();
+        let movieIndex = new Array();
+        let movieDate = new Array();
+        let movieHouse = new Array();
+        let moviePictures = new Array();
+        let movieShows = new Array();
+        let ind = localStorage.getItem("ind")
+        let cinId = localStorage.getItem("nme")
+        let movId = localStorage.getItem("ne")
+        for (let i = 0; i < cinemas.length; i++) {
+            branchNames[i] = cinemas[i].branchName
+        }
+        for (let i = 0; i < cinemas.length; i++) {
+            if (cinId === branchNames[i]) {
+                branchMovie = cinemas[i].movies
+                for (let j = 0; j < branchMovie.length; j++) {
+                    movieIds[j] = (cinemas[i].movies[j].id);
+                    movieNames[j] = (getMovieName(movies, cinemas[i].movies[j].id));
+                    moviePictures[j] = (getMoviePic(movies, cinemas[i].movies[j].id));
+                    for (let k = 0; k < cinemas[i].movies[j].shows.length; k++) {
+                        movieIndex[k] = (cinemas[i].movies[j].shows[k].index);
+                        movieDate[k] = (cinemas[i].movies[j].shows[k].datetime);
+                        movieHouse[k] = (cinemas[i].movies[j].shows[k].house);
+                    }
+                }
+            }
+        }
+        let dat = ""
+        let hoe = 0
+        for (let k = 0; k < cinemas[cinId].movies.length; k++) {
+            for (let f = 0; f < cinemas[cinId].movies[k].shows.length; f++) {
+                if (cinemas[cinId].movies[k].shows[f].index == ind) {
+                    dat = cinemas[cinId].movies[k].shows[f].datetime
+                    hoe = cinemas[cinId].movies[k].shows[f].house
+                }
+            }
+        }
+        let t = document
+        let bloc = t.getElementById('mov')
+        let elemnt = t.createElement('div')
+        elemnt.innerHTML = `
+                <p><span>Cinema</span>: ${branchNames[cinId]}</p>
+                <p><span>Movie</span>: ${getMovieName(movies, cinemas[cinId].movies[movId].id)}</p>
+                <p><span>Date Time:</span> ${dat}</p>
+                <p><span>House:</span> ${hoe}</p>
+
+                 `
+
+                 
+        bloc.appendChild(elemnt)
+        var nedar = new Array();
+        var coun = 0
+        function selected1() {
+            var a = document.getElementById("st_1");
+            a.onclick = function () {
+                a.classList.add("selected");
+                var b = document.getElementById("book_st").insertAdjacentHTML('beforeend', ' A1');
+    
+                nedar[coun] = "A1"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected1();
+    
+        function selected2() {
+            var a = document.getElementById("st_2");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' A2');
+                nedar[coun] = "A2"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected2();
+    
+        function selected3() {
+            var a = document.getElementById("st_3");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' A3');
+                nedar[coun] = "A3"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected3();
+    
+        function selected4() {
+            var a = document.getElementById("st_4");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' A4');
+                nedar[coun] = "A4"
+                console.log(nedar[coun])
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected4();
+    
+        function selected5() {
+            var a = document.getElementById("st_5");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' B1');
+                nedar[coun] = "B1"
+                console.log(nedar[coun])
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected5();
+    
+        function selected6() {
+            var a = document.getElementById("st_6");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' B2');
+                nedar[coun] = "B2"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected6();
+    
+        function selected7() {
+            var a = document.getElementById("st_7");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' B3');
+                nedar[coun] = "B3"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected7();
+    
+    
+        function selected8() {
+            var a = document.getElementById("st_8");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' B4');
+                nedar[coun] = "B4"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected8();
+    
+        function selected9() {
+            var a = document.getElementById("st_9");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' C1');
+                nedar[coun] = "C1"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected9();
+    
+        function selected10() {
+            var a = document.getElementById("st_10");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' C2');
+                nedar[coun] = "C2"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected10();
+    
+        function selected11() {
+            var a = document.getElementById("st_11");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' C3');
+                nedar[coun] = "C3"               
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected11();
+    
+    
+        function selected12() {
+            var a = document.getElementById("st_12");
+            a.onclick = function () {
+                a.classList.add("selected");
+                document.getElementById("book_st").insertAdjacentHTML('beforeend', ' C4');
+                nedar[coun] = "C4"
+                coun++;
+                localStorage.setItem("innd", nedar);
+            }
+        }
+        selected12();
+    
+    </script>
+
+
+</body>
+</html>
